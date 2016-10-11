@@ -1,23 +1,23 @@
 ###  Provide a query showing Customers (just their full names, customer ID and country) who are not in the US.
 
-SELECT FirstName || " " || LastName AS "FullName", CustomerId, Country FROM Customer
-Where Country <> "USA"
+SELECT FirstName || " " || LastName AS "FullName", CustomerId, Country FROM Customer  
+WHERE Country <> "USA"  
 
 ###  Provide a query only showing the Customers from Brazil.
 
-SELECT FirstName || " " || LastName AS "FullName", CustomerId, Country FROM Customer
-Where Country = "Brazil"
+SELECT FirstName || " " || LastName AS "FullName", CustomerId, Country FROM Customer  
+WHERE Country = "Brazil"  
 
 ###  Provide a query showing the Invoices of customers who are from Brazil. The resultant table should show the customer's full name, Invoice ID, Date of the invoice and billing country.
 
-SELECT Invoiceid, InvoiceDate, BillingCountry, Customer.FirstName || " " || Customer.LastName AS "FullName" FROM Invoice
-JOIN Customer On Invoice.CustomerID = Customer.CustomerId
-Where Customer.Country = "Brazil" 
+SELECT Invoiceid, InvoiceDate, BillingCountry, Customer.FirstName || " " || Customer.LastName AS "FullName" FROM Invoice  
+JOIN Customer On Invoice.CustomerID = Customer.CustomerId  
+WHERE Customer.Country = "Brazil"   
 
 ###  Provide a query showing only the Employees who are Sales Agents.
 
 SELECT FirstName || " " || LastName AS "FullName" FROM Employee
-Where Title = "Sales Support Agent" 
+WHERE Title = "Sales Support Agent" 
 
 ###  Provide a query showing a unique list of billing countries from the Invoice table.
 
@@ -28,7 +28,7 @@ GROUP BY BillingCountry
 
 SELECT Invoiceid FROM Invoice
 JOIN Customer On Invoice.CustomerID = Customer.CustomerId
-Where Customer.Country = "Brazil" 
+WHERE Customer.Country = "Brazil" 
 
 ###  Provide a query that shows the invoices associated with each sales agent. The resultant table should include the Sales Agent's full name.
 
