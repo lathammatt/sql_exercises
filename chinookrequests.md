@@ -79,7 +79,46 @@ JOIN Track ON InvoiceLine.TrackId = Track.TrackId
 JOIN Album ON Track.AlbumId = Album.AlbumId  
 JOIN Artist ON Album.ArtistId = Artist.ArtistId  
 
-#### 
+#### Provide a query that shows the # of invoices per country.
+
+SELECT COUNT(InvoiceID) As "Invoice Total", Customer.Country FROM Invoice  
+JOIN Customer ON Invoice.CustomerId = Customer.CustomerId  
+GROUP BY Customer.Country  
+
+#### Provide a query that shows the total number of tracks in each playlist. The Playlist name should be include on the resultant table.
+
+SELECT COUNT(PlaylistTrack.PlaylistId) AS "Number of Tracks", Playlist.Name AS "Playlist Name" FROM PlaylistTrack  
+JOIN Playlist ON PlaylistTrack.PlaylistId = Playlist.PlaylistId  
+GROUP BY Playlist.Name  
+
+#### Provide a query that shows all the Tracks, but displays no IDs. The resultant table should include the Album name, Media type and Genre.
+
+SELECT Track.Name AS "Song Name", Album.Title AS "Album", MediaType.Name AS "Media Type", Genre.Name AS "Genre" FROM Track  
+JOIN Album ON Track.AlbumId = Album.AlbumId  
+JOIN MediaType ON Track.MediaTypeId = MediaType.MediaTypeId  
+JOIN Genre ON Track.GenreId = Genre.GenreId  
+
+#### Provide a query that shows all Invoices but includes the # of invoice line items.
+
+
+
+#### Provide a query that shows total sales made by each sales agent.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
