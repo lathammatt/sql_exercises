@@ -1,1 +1,1 @@
-# sql_exercises
+# ERDs and SQL exercises 
