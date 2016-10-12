@@ -26,13 +26,13 @@ GROUP BY BillingCountry
 
 ####  Provide a query showing the invoices of customers who are from Brazil.
 
-SELECT Invoiceid FROM Invoice  
+SELECT InvoiceId FROM Invoice  
 JOIN Customer On Invoice.CustomerID = Customer.CustomerId  
 WHERE Customer.Country = "Brazil"  
 
 ####  Provide a query that shows the invoices associated with each sales agent. The resultant table should include the Sales Agent's full name.
 
-SELECT Invoiceid, Employee.FirstName || " " || Employee.LastName AS "FullName" FROM Invoice  
+SELECT InvoiceId, Employee.FirstName || " " || Employee.LastName AS "FullName" FROM Invoice  
 JOIN Customer ON Invoice.CustomerID = Customer.CustomerId  
 JOIN Employee ON Customer.SupportRepId = Employee.EmployeeId  
 WHERE Employee.Title = "Sales Support Agent"  
@@ -59,17 +59,17 @@ WHERE InvoiceDate LIKE "2011%"
 
 #### Looking at the InvoiceLine table, provide a query that COUNTs the number of line items for Invoice ID 37.
 
-SELECT COUNT(InvoiceID) FROM InvoiceLine  
+SELECT COUNT(InvoiceId) FROM InvoiceLine  
 WHERE InvoiceID = "37"  
 
 #### Looking at the InvoiceLine table, provide a query that COUNTs the number of line items for each Invoice.
 
-SELECT COUNT(InvoiceID) FROM InvoiceLine  
-GROUP BY InvoiceID  
+SELECT COUNT(InvoiceId) FROM InvoiceLine  
+GROUP BY InvoiceId  
 
 #### Provide a query that includes the track name with each invoice line item.
 
-SELECT InvoiceLine.*, Track.Name FROM InvoiceLine  
+SELECT InvoiceLine./*, Track.Name FROM InvoiceLine  
 JOIN Track ON InvoiceLine.TrackId = Track.TrackId  
 
 #### Provide a query that includes the purchased track name AND artist name with each invoice line item.
