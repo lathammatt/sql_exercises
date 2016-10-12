@@ -100,16 +100,98 @@ JOIN Genre ON Track.GenreId = Genre.GenreId
 
 #### Provide a query that shows all Invoices but includes the # of invoice line items.
 
+SELECT Invoice.*, COUNT(InvoiceLine.InvoiceId) AS "Count" FROM Invoice  
+JOIN InvoiceLine ON Invoice.InvoiceId = InvoiceLine.InvoiceId  
+GROUP BY Invoice.InvoiceId  
 
 
 #### Provide a query that shows total sales made by each sales agent.
 
+SELECT ROUND(SUM(Invoice.Total)) AS "Total", Employee.FirstName || " " || Employee.LastName AS "Employee Full Name" FROM Invoice  
+JOIN Customer ON Invoice.CustomerId = Customer.CustomerId  
+JOIN Employee ON Customer.SupportRepId = Employee.EmployeeId  
+WHERE Employee.Title = "Sales Support Agent"  
+GROUP BY Employee.EmployeeId  
 
+#### Which sales agent made the most in sales in 2009?
 
+SELECT ROUND(SUM(Invoice.Total)) AS "Total", Employee.FirstName || " " || Employee.LastName AS "Employee Full Name" FROM Invoice  
+JOIN Customer ON Invoice.CustomerId = Customer.CustomerId  
+JOIN Employee ON Customer.SupportRepId = Employee.EmployeeId  
+WHERE Invoice.InvoiceDate LIKE "2009%"  
+GROUP BY Employee.EmployeeId  
+ORDER BY Invoice.Total DESC  
+LIMIT 1  
 
+#### Which sales agent made the most in sales in 2010?
 
+SELECT ROUND(SUM(Invoice.Total)) AS "Total", Employee.FirstName || " " || Employee.LastName AS "Employee Full Name" FROM Invoice  
+JOIN Customer ON Invoice.CustomerId = Customer.CustomerId  
+JOIN Employee ON Customer.SupportRepId = Employee.EmployeeId  
+WHERE Invoice.InvoiceDate LIKE "2010%"  
+GROUP BY Employee.EmployeeId  
+ORDER BY Invoice.Total DESC  
+LIMIT 1  
 
+#### Which sales agent made the most in sales over all?
 
+SELECT ROUND(SUM(Invoice.Total)) AS "Total", Employee.FirstName || " " || Employee.LastName AS "Employee Full Name" FROM Invoice  
+JOIN Customer ON Invoice.CustomerId = Customer.CustomerId  
+JOIN Employee ON Customer.SupportRepId = Employee.EmployeeId  
+GROUP BY Employee.EmployeeId  
+ORDER BY Invoice.Total ASC  
+LIMIT 1  
+
+#### Provide a query that shows the # of customers assigned to each sales agent.
+
+SELECT COUNT(Customer.CustomerId) AS "Number of Customers", Employee.FirstName || " " || Employee.LastName AS "Employee Full Name" FROM Customer  
+JOIN Employee ON Customer.SupportRepId = Employee.EmployeeId  
+GROUP BY Employee.FirstName  
+
+#### Provide a query that shows the total sales per country. Which country's customers spent the most?
+
+SELECT COUNT(Invoice.Total) AS "Total Sales", Customer.Country AS "Country" FROM Invoice  
+JOIN Customer ON Invoice.CustomerId = Customer.CustomerId  
+GROUP BY Customer.Country  
+
+#### Provide a query that shows the most purchased track of 2013.
+
+SELECT COUNT(Invoice.Total) AS "Total Sales", Track.Name AS "Song" FROM Invoice  
+JOIN InvoiceLine ON Invoice.InvoiceId = InvoiceLine.InvoiceId  
+JOIN Track ON InvoiceLine.TrackId = Track.TrackId  
+WHERE Invoice.InvoiceDate LIKE "2013%"  
+GROUP BY Track.Name  
+ORDER BY COUNT(Invoice.Total) DESC  
+
+#### Provide a query that shows the top 5 most purchased tracks over all
+
+SELECT COUNT(Invoice.Total) AS "Total Sales", Track.Name AS "Song" FROM Invoice  
+JOIN InvoiceLine ON Invoice.InvoiceId = InvoiceLine.InvoiceId  
+JOIN Track ON InvoiceLine.TrackId = Track.TrackId  
+GROUP BY Track.Name  
+ORDER BY COUNT(Invoice.Total) DESC  
+Limit 5  
+
+#### Provide a query that shows the top 3 best selling artists.
+
+SELECT COUNT(Invoice.Total) AS "Total Sales", Artist.Name AS "Artist" FROM Invoice  
+JOIN InvoiceLine ON Invoice.InvoiceId = InvoiceLine.InvoiceId  
+JOIN Track ON InvoiceLine.TrackId = Track.TrackId  
+JOIN Album ON Track.AlbumId = Album.AlbumId  
+JOIN Artist ON Album.ArtistId = Artist.ArtistId  
+GROUP BY Artist.Name  
+ORDER BY COUNT(Invoice.Total) DESC  
+Limit 3  
+
+#### Provide a query that shows the most purchased Media Type.
+
+SELECT COUNT(Invoice.Total) AS "Total Sales", MediaType.Name AS "Mediat Type" FROM Invoice  
+JOIN InvoiceLine ON Invoice.InvoiceId = InvoiceLine.InvoiceId  
+JOIN Track ON InvoiceLine.TrackId = Track.TrackId  
+JOIN MediaType ON Track.MediaTypeId = MediaType.MediaTypeId  
+GROUP BY Mediatype.Name  
+ORDER BY COUNT(Invoice.Total) DESC  
+Limit 1  
 
 
 
