@@ -185,7 +185,7 @@ Limit 3
 
 #### Provide a query that shows the most purchased Media Type.
 
-SELECT COUNT(Invoice.Total) AS "Total Sales", MediaType.Name AS "Mediat Type" FROM Invoice  
+SELECT COUNT(Invoice.Total) AS "Total Sales", MediaType.Name AS "Media Type" FROM Invoice  
 JOIN InvoiceLine ON Invoice.InvoiceId = InvoiceLine.InvoiceId  
 JOIN Track ON InvoiceLine.TrackId = Track.TrackId  
 JOIN MediaType ON Track.MediaTypeId = MediaType.MediaTypeId  
