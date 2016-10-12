@@ -69,19 +69,19 @@ GROUP BY InvoiceId
 
 #### Provide a query that includes the track name with each invoice line item.
 
-SELECT InvoiceLine./*, Track.Name FROM InvoiceLine  
+SELECT InvoiceLine.\*, Track.Name FROM InvoiceLine  
 JOIN Track ON InvoiceLine.TrackId = Track.TrackId  
 
 #### Provide a query that includes the purchased track name AND artist name with each invoice line item.
 
-SELECT InvoiceLine.*, Track.Name AS "Song", Artist.Name AS "Artist" FROM InvoiceLine  
+SELECT InvoiceLine.\*, Track.Name AS "Song", Artist.Name AS "Artist" FROM InvoiceLine  
 JOIN Track ON InvoiceLine.TrackId = Track.TrackId  
 JOIN Album ON Track.AlbumId = Album.AlbumId  
 JOIN Artist ON Album.ArtistId = Artist.ArtistId  
 
 #### Provide a query that shows the # of invoices per country.
 
-SELECT COUNT(InvoiceID) As "Invoice Total", Customer.Country FROM Invoice  
+SELECT COUNT(InvoiceId) As "Invoice Total", Customer.Country FROM Invoice  
 JOIN Customer ON Invoice.CustomerId = Customer.CustomerId  
 GROUP BY Customer.Country  
 
@@ -100,7 +100,7 @@ JOIN Genre ON Track.GenreId = Genre.GenreId
 
 #### Provide a query that shows all Invoices but includes the # of invoice line items.
 
-SELECT Invoice.*, COUNT(InvoiceLine.InvoiceId) AS "Count" FROM Invoice  
+SELECT Invoice.\*, COUNT(InvoiceLine.InvoiceId) AS "Count" FROM Invoice  
 JOIN InvoiceLine ON Invoice.InvoiceId = InvoiceLine.InvoiceId  
 GROUP BY Invoice.InvoiceId  
 
@@ -192,30 +192,4 @@ JOIN MediaType ON Track.MediaTypeId = MediaType.MediaTypeId
 GROUP BY Mediatype.Name  
 ORDER BY COUNT(Invoice.Total) DESC  
 Limit 1  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
